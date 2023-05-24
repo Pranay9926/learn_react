@@ -32,7 +32,7 @@ export class Forms extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // const res = await axios.post("http://localhost:7834/saveStudent", formdata);
+    // const res = await axios.post("http://localhost:3001/registration", formdata);
     // console.log(res);
     // if (res) {
     //   this.setState({
@@ -104,11 +104,11 @@ export class Forms extends Component {
                             name="FacultyName"
                             onChange={this.handleChange}
                           >
-                            <MenuItem value=""></MenuItem>
-                            <MenuItem value="abc">abc</MenuItem>
-                            <MenuItem value={2}>2</MenuItem>
-                            <MenuItem value={3}>3</MenuItem>
-                            <MenuItem value={3}>4</MenuItem>
+                            <MenuItem value="Nitin">Nitin</MenuItem>
+                            <MenuItem value="cheitali">cheitali</MenuItem>
+                            <MenuItem value="Tarjani">Tarjani</MenuItem>
+                            <MenuItem value="Deepak">Deepak</MenuItem>
+                            <MenuItem value="Preeti">Preeti</MenuItem>
                           </Select>
                         </FormControl>
                       </div>
@@ -117,11 +117,11 @@ export class Forms extends Component {
                         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                           <InputLabel>Subject</InputLabel>
                           <Select name="Subject" onChange={this.handleChange}>
-                            <MenuItem value=""></MenuItem>
-                            <MenuItem value={2019}>2019</MenuItem>
-                            <MenuItem value={2020}>2020</MenuItem>
-                            <MenuItem value={2021}>2021</MenuItem>
-                            <MenuItem value={2022}>2022</MenuItem>
+                          <MenuItem value="DBMS">DBMS</MenuItem>
+                          <MenuItem value="Software Engineering">Software Engineering</MenuItem>
+                          <MenuItem value="Data Structure">Data Structure</MenuItem>
+                          <MenuItem value="AI/ML">AI/ML</MenuItem>
+                          <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
                           </Select>
                         </FormControl>
                       </div>

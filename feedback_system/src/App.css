@@ -1,7 +1,7 @@
 body {
-  background-image: url(./pexels-tirachard-kumtanom-733857.jpg);
-  background-size: auto;
-  background-position: center;
+  background-image: url("https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
 }
 
 .navbar {
@@ -16,7 +16,7 @@ body {
   align-items: center;
   height: 10%;
   margin-top: 30px;
-  margin-left: 300px
+  margin-left: 100px
 }
 
 .nav-list li {
@@ -70,7 +70,14 @@ body {
   justify-content: center;
   margin-top: 40px;
 }
-
+#feedbackform{
+  background-color: #fff;
+  /* text-align: center; */
+}
+#Question{
+  /* text-align: center; */
+  margin-left: 10px;
+}
 .head {
   text-align: center;
 }
