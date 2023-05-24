@@ -1,41 +1,86 @@
-/* .App {
+body {
+  background-image: url(./pexels-tirachard-kumtanom-733857.jpg);
+  background-size: auto;
+  background-position: center;
+}
+
+.navbar {
+  background-color: #333;
+  height: 80px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 10%;
+  margin-top: 30px;
+  margin-left: 300px
+}
+
+.nav-list li {
+  margin-right: 20px;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.nav-list li a:hover {
+  color: #ffcc00;
+}
+
+#login {
+  border: 2px solid;
+  width: 400px;
+  margin: 70px auto;
+  height: 300px;
+  text-align: center;
+  /* background-color: #4072a1; */
+}
+
+#loginh1 {
+  background-color: #55bbf7;
   text-align: center;
 }
-body{
-  background-color: wheat;
-}
 
-#login{
-  border: 2px solid ;
-  width: 400px;
-  margin: 15px auto;
-  height: 300px;
-  background-color: #fffce1;
-}
-
-loginh1{
-  background-color: #fabd4a;
-}
-login2 {
+#loginh2 {
   width: 200px;
-  margin: auto;
-  background-color: #ffc250;
+  margin: 20px auto;
+  /* background-color: #0075d4; */
   border-radius: 5px;
+  text-align: center;
 }
 
-#formDiv{
+#formDiv {
   width: 500px;
   height: 500px;
-  margin: auto;
+  margin: 30px auto;
   padding: 10px;
   border: 2px solid;
   background-color: white;
 }
+
+.submitform {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.head {
+  text-align: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
-} */
+}
