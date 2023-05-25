@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import { Login } from "./pages/loginpage";
 import { Forms } from "./pages/formpage";
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <nav class="navbar">
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <div style={{ marginLeft: "700px", marginTop: "20px" }}>
+          <div style={{ marginLeft: "600px", marginTop: "20px" }}>
             <h1
               style={{
                 textAlign: "center",

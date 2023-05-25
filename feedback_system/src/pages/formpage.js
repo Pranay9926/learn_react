@@ -120,17 +120,11 @@ export class Forms extends Component {
                         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                           <InputLabel>Subject</InputLabel>
                           <Select name="Subject" onChange={this.handleChange}>
-                            <MenuItem value="DBMS">DBMS</MenuItem>
-                            <MenuItem value="Software Engineering">
-                              Software Engineering
-                            </MenuItem>
-                            <MenuItem value="Data Structure">
-                              Data Structure
-                            </MenuItem>
-                            <MenuItem value="AI/ML">AI/ML</MenuItem>
-                            <MenuItem value="Cloud Computing">
-                              Cloud Computing
-                            </MenuItem>
+                          <MenuItem value="DBMS">DBMS</MenuItem>
+                          <MenuItem value="Software Engineering">Software Engineering</MenuItem>
+                          <MenuItem value="Data Structure">Data Structure</MenuItem>
+                          <MenuItem value="AI/ML">AI/ML</MenuItem>
+                          <MenuItem value="Cloud Computing">Cloud Computing</MenuItem>
                           </Select>
                         </FormControl>
                       </div>
