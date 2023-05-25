@@ -1,8 +1,19 @@
 body {
-  background-image: url(./pexels-tirachard-kumtanom-733857.jpg);
-  background-size: auto;
-  background-position: center;
+  background-image: url("https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+    background-repeat: no-repeat; 
+ } 
+
+#bg{
+  height: calc(100vh - 80px);
 }
+
+
+
+
+
+
+
 
 .navbar {
   background-color: #333;
@@ -35,12 +46,14 @@ body {
 }
 
 #login {
-  border: 2px solid;
-  width: 400px;
-  margin: 70px auto;
-  height: 300px;
-  text-align: center;
-  /* background-color: #4072a1; */
+      border: 10px solid rgb(171, 208, 243);
+        width: 450px;
+        margin: 70px auto;
+        height: 500px;
+        text-align: center;
+        box-shadow: 0px 0px 12px 5px #4685f7;
+        background-color: #ffffff;
+  /* background-color: #edfffd; */
 }
 
 #loginh1 {
@@ -50,10 +63,15 @@ body {
 
 #loginh2 {
   width: 200px;
-  margin: 20px auto;
+  margin: 50px auto;
   /* background-color: #0075d4; */
   border-radius: 5px;
   text-align: center;
+  font-size: 40px;
+}
+#loginh3{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
 }
 
 #formDiv {
@@ -63,6 +81,8 @@ body {
   padding: 10px;
   border: 2px solid;
   background-color: white;
+        box-shadow: 0px 0px 12px 5px #4685f7;
+        border: 10px solid rgb(171, 208, 243);
 }
 
 .submitform {
@@ -73,6 +93,13 @@ body {
 
 .head {
   text-align: center;
+}
+.login_sing{
+  margin: 10px 30px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  
 }
 
 @keyframes App-logo-spin {

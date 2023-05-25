@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Login } from "./pages/loginpage";
 import { Forms } from "./pages/formpage";
+import { Signin } from "./pages/signinpage";
 import FeedbackForm from "./pages/feedback";
 import { Routes, Route, Link } from "react-router-dom";
 function App() {
@@ -28,6 +29,9 @@ function App() {
                 <Link to="/">Login</Link>
               </li>
               <li>
+                <Link to="/Signin">SignIn</Link>
+              </li>
+              <li>
                 <Link to="/Forms">Forms</Link>
               </li>
               <li>
@@ -41,9 +45,12 @@ function App() {
         <Route path="/" element=<Login /> />
         <Route path="/Forms" element=<Forms /> />
         <Route path="/FeedbackForm" element=<FeedbackForm /> />
+        <Route path="/Signin" element=<Signin /> />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+

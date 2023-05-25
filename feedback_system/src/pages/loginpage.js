@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import axios from "axios";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+
+  
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -26,28 +31,47 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <form id="login" onSubmit={handleSubmit}>
+    // <div className="container">
+    // <div className="left"></div>
+    // <div className="right">
+    <div id="login">
+      <form onSubmit={handleSubmit}>
         <h2 id="loginh2">Login</h2>
-        <h3>Enter your Email ID</h3>
+        <h3 id="loginh3">Enter your Email ID</h3>
         <input
           type="email"
           placeholder="Email"
           value={email}
+          style={{ width: "200px", height: "30px" }}
           onChange={handleEmailChange}
         />
-        <h3>Enter your Password</h3>
+        <h3 id="loginh3">Enter your Password</h3>
 
         <input
           type="password"
           placeholder="Password"
           value={password}
+          style={{ width: "200px", height: "30px" }}
           onChange={handlePasswordChange}
         />
         <br />
         <br />
-        <button type="submit">Login</button>
+        <button className="login_sing" type="submit">
+          Login
+        </button>
+        <button
+          className="login_sing"
+          type="submit"
+          onClick={() => {
+            navigate("/Signin");
+          }}
+          // style={{ marginLeft: "30px" }}
+        >
+          Sign In
+        </button>
       </form>
     </div>
+    // </div>
+    // </div>
   );
 };
