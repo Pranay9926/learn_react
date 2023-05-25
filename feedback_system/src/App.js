@@ -5,47 +5,36 @@ import { Forms } from "./pages/formpage";
 import { Signin } from "./pages/signinpage";
 import FeedbackForm from "./pages/feedback";
 import { Routes, Route, Link } from "react-router-dom";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 function App() {
   return (
     <div className="App">
-      <nav class="navbar">
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <div style={{ marginLeft: "600px", marginTop: "20px" }}>
-            <h1
-              style={{
-                textAlign: "center",
-                color: "white",
-                padding: "10px",
-                display: "inline",
-                margin: "auto",
-              }}
-            >
-              Welcome to Student Feedback System
-            </h1>
-          </div>
-          <div>
-            <ul class="nav-list">
-              <li>
-                <Link to="/">Login</Link>
-              </li>
-              <li>
-                <Link to="/Signin">SignIn</Link>
-              </li>
-              <li>
-                <Link to="/Forms">Forms</Link>
-              </li>
-              <li>
-                <Link to="/FeedbackForm">FeedbackForm</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <AppBar component="nav" color="info">
+        <Toolbar>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+             Welcome to Student Feedback System
+          </Typography>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Link to="/"><Button sx={{color:"#FFF"}}>Login</Button></Link>
+          <Link to="/Signin"><Button sx={{color:"#FFF"}}>SignIn</Button></Link>
+          <Link to="/Forms"><Button sx={{color:"#FFF"}}>Forms</Button></Link>
+          <Link to="/FeedbackForm"><Button sx={{color:"#FFF"}}>FeedbackForm</Button></Link>
+            MCA 1
+            abc MCA 2021@hsdkd
+            a screen
+
+          </Box>
+        </Toolbar>
+      </AppBar><br/><br/><br/>
       <Routes>
-        <Route path="/" element=<Login /> />
-        <Route path="/Forms" element=<Forms /> />
-        <Route path="/FeedbackForm" element=<FeedbackForm /> />
-        <Route path="/Signin" element=<Signin /> />
+        <Route path="/" element={<Login />} />
+        <Route path="/Forms" element={<Forms /> }/>
+        <Route path="/FeedbackForm" element={<FeedbackForm />} />
+        <Route path="/Signin" element={<Signin />} />
       </Routes>
     </div>
   );
