@@ -25,6 +25,10 @@ export const Login = () => {
       .post("http://localhost:3001/login", { email, password })
       .then((res) => {
         console.log(res);
+        localStorage.setItem("email", email);
+        navigate("/Forms");
+      }).catch((e)=>{
+        console.log(e)
       });
     // console.log('Email:', email);
     // console.log('Password:', password);

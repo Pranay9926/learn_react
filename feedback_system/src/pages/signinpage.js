@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 
 export const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -20,6 +22,10 @@ export const Signin = () => {
       .post("http://localhost:3001/signin", { email, password })
       .then((res) => {
         console.log(res);
+        localStorage.setItem("email", email);
+        navigate("/Forms");
+      }).catch(e=>{
+        console.log(e)
       });
     // console.log('Email:', email);
     // console.log('Password:', password);

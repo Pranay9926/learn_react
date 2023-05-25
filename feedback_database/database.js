@@ -9,7 +9,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'feedback_pgdatabase',
-  password: 'pranay',
+  password: '1234',
   port: 5432, // Default PostgreSQL port
 });
 pool.connect();
@@ -32,14 +32,22 @@ app.post('/signin', async (req, res) => {
       "INSERT INTO feedback_schema.users_table(email, password) VALUES ($1, $2)",
       [email, password],
       (err, respon) => {
-        if (!err) console.log("${res.rowCount}");
-        else console.log("pranay ", err.message);
+        if (!err) {
+          res.status(200).send({
+            status: 200,
+            success: true,
+          });
+          console.log("${res.rowCount}");
+        }
+        else {
+          res.status(500).send({
+            status: 500,
+            success: false,
+          });
+          console.log("Error: ", err.message);
+        }
       }
     );
-    res.status(200).send({
-      status: 200,
-      success: true,
-    });
   }
   catch {
     res.status(400).send({
@@ -90,18 +98,31 @@ app.post("/registration", async (req, res) => {
 // Login data check
 
 
-app.get("/login", async (req, res) => {
+app.post("/login", async (req, res) => {
   let rrr = req.body;
 
   try {
     const { email, password } = req.body;
     console.log(email, password);
     pool.query(
-      "SELECT * FROM  calculated_db.calculator_table WHERE  email = 'email' AND password = 'password' ",
+      "SELECT * FROM feedback_schema.users_table WHERE  email = '$1' AND password = '$2' ",
       [email, password],
       (err, respon) => {
-        if (!err) console.log("${res.rowCount}");
-        else console.log("pranay ", err.message);
+        if (!err) {
+          res.status(200).send({
+            status: 200,
+            success: true,
+          });
+          console.log(`${res}`);
+          console.log(`${res.rowCount}`);
+        }
+        else {
+          res.status(500).send({
+            status: 500,
+            success: false,
+          });
+          console.log("Error:- ", err.message);
+        }
       }
     );
     res.status(200).send({
