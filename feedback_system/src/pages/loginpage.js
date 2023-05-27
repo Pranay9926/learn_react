@@ -26,18 +26,16 @@ export const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("email", email);
-        navigate("/Forms");
+        navigate("/FeedbackForm");
       }).catch((e)=>{
+        alert("Your data not found You must Sing Up")
+        setEmail("")
+        setPassword("")
         console.log(e)
       });
-    // console.log('Email:', email);
-    // console.log('Password:', password);
   };
 
   return (
-    // <div className="container">
-    // <div className="left"></div>
-    // <div className="right">
     <div id="login">
       <form onSubmit={handleSubmit}>
         <h2 id="loginh2">Login</h2>
@@ -61,7 +59,7 @@ export const Login = () => {
         <br />
         <br />
         <button className="login_sing" type="submit">
-          Login
+          Login 
         </button>
         <button
           className="login_sing"
@@ -69,13 +67,10 @@ export const Login = () => {
           onClick={() => {
             navigate("/Signin");
           }}
-          // style={{ marginLeft: "30px" }}
         >
-          Sign In
+          Sign Up
         </button>
       </form>
     </div>
-    // </div>
-    // </div>
   );
 };

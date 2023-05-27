@@ -53,7 +53,6 @@ body {
         text-align: center;
         box-shadow: 0px 0px 12px 5px #4685f7;
         background-color: #ffffff;
-  /* background-color: #edfffd; */
 }
 
 #loginh1 {
@@ -64,7 +63,6 @@ body {
 #loginh2 {
   width: 200px;
   margin: 50px auto;
-  /* background-color: #0075d4; */
   border-radius: 5px;
   text-align: center;
   font-size: 40px;
@@ -76,9 +74,9 @@ body {
 
 #formDiv {
   width: 500px;
-  height: 500px;
+  height: 650px;
   margin: 30px auto;
-  padding: 10px;
+  padding: 20px;
   border: 2px solid;
   background-color: white;
         box-shadow: 0px 0px 12px 5px #4685f7;
@@ -91,22 +89,25 @@ body {
   margin-top: 40px;
 }
 #feedbackform{
-  background-color: #fff;
-  /* text-align: center; */
+  width: 40%;
+  height: 800px;
+  margin: 30px auto;
+  background-color: white;
+  box-shadow: 0px 0px 12px 5px #4685f7;
+  border: 10px solid rgb(171, 208, 243);
 }
 #Question{
-  /* text-align: center; */
   margin-left: 10px;
 }
 .head {
   text-align: center;
 }
-.login_sing{
-  margin: 10px 30px;
+.login_sing{        
   padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  
+  background-color: rgb(171, 208, 243);
+  border-radius: 5px;
+  margin: 30px;
+  font-weight: bold;
 }
 
 @keyframes App-logo-spin {

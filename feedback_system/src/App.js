@@ -1,7 +1,6 @@
 // import logo from "./logo.svg";
 import "./App.css";
 import { Login } from "./pages/loginpage";
-import { Forms } from "./pages/formpage";
 import { Signin } from "./pages/signinpage";
 import FeedbackForm from "./pages/feedback";
 import { Routes, Route, Link } from "react-router-dom";
@@ -14,25 +13,25 @@ function App() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-             Welcome to Student Feedback System
+            Welcome to Student Feedback System
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <Link to="/"><Button sx={{color:"#FFF"}}>Login</Button></Link>
-          <Link to="/Signin"><Button sx={{color:"#FFF"}}>SignIn</Button></Link>
-          <Link to="/Forms"><Button sx={{color:"#FFF"}}>Forms</Button></Link>
-          <Link to="/FeedbackForm"><Button sx={{color:"#FFF"}}>FeedbackForm</Button></Link>
-            MCA 1
-            abc MCA 2021@hsdkd
-            a screen
-
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Link to="/">
+              <Button sx={{ color: "#FFF" }}>Logout</Button>
+            </Link>
+            <Link to="/">
+              <Button sx={{ color: "#FFF" }}>FeedbackForm</Button>
+            </Link>
           </Box>
         </Toolbar>
-      </AppBar><br/><br/><br/>
+      </AppBar>
+      <br />
+      <br />
+      <br />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/Forms" element={<Forms /> }/>
         <Route path="/FeedbackForm" element={<FeedbackForm />} />
         <Route path="/Signin" element={<Signin />} />
       </Routes>
