@@ -3,8 +3,8 @@ import {useNavigate} from "react-router-dom"
 import axios from "axios";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("pranay@scsit.com");
+  const [password, setPassword] = useState("Pranay");
   const navigate = useNavigate();
 
 
@@ -18,21 +18,16 @@ export const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here, such as validating the credentials or making an API request
-    axios
-      .post("http://localhost:3001/login", { email, password })
-      .then((res) => {
-        console.log(res);
+    try {
+      let res = await axios.post("http://localhost:3001/login", { email, password });
+      if(res){
         localStorage.setItem("email", email);
-        navigate("/FeedbackForm");
-      }).catch((e)=>{
-        alert("Your data not found You must Sing Up")
-        setEmail("")
-        setPassword("")
-        console.log(e)
-      });
+      }
+    } catch (e) {
+      alert(e.response.data.msg)    
+    }
   };
 
   return (
@@ -59,7 +54,7 @@ export const Login = () => {
         <br />
         <br />
         <button className="login_sing" type="submit">
-          Login 
+          Login
         </button>
         <button
           className="login_sing"

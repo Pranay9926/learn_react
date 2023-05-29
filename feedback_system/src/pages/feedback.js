@@ -11,7 +11,12 @@ import Select from "@mui/material/Select";
 const FeedbackForm = () => {
   const [feedback, setFeedback] = useState({});
   const [arry,setarry] = useState([]) 
+  const [name,setname] = useState([])
   const navigate = useNavigate();
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: "Bearer <your-token>",
+  };
 
   useEffect(()=>{
     getdata();
@@ -19,8 +24,12 @@ const FeedbackForm = () => {
   const getdata =  ()=>{
     axios.get("http://localhost:3001/getdata")
     .then((res)=>{
-      console.log(res.data.data);
-      setarry(res.data.data);
+      let d = res.data.data;
+      d.map((e)=>{
+        arry.push(e.t_name)
+        
+      })
+      console.log(arry)
     })
   }
 
@@ -54,15 +63,7 @@ const FeedbackForm = () => {
           <br />
           <div>
             <span style={{ margin: "10px " }}> Faculty Name : </span>
-            <div>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <InputLabel>Name</InputLabel>
-                <Select name="Course">
-                  <MenuItem value="MCA">MCA</MenuItem>
-                  
-                </Select>
-              </FormControl>
-            </div>
+            <input type="text" placeholder="Teacher name" value={arry}/>
           </div>
           <br />
           <div>
@@ -73,372 +74,454 @@ const FeedbackForm = () => {
               placeholder="Enter Subject"
             />
           </div>
-          {/* <h2 style={{ margin: "10px", textAlign: "center" }}>
-            Faculty Feedback Form
-          </h2> */}
           <br />
           <div id="Question">
             <div>
-              <label>
-                Question 1: Are you satisfied with the teaching staff and their
-                teaching practices?
+              <label className="qlabel">
+                Question 1: Abilit to bring conceptual clarity
               </label>
               <br />
+              Very Poor &emsp; 1
               <input
                 type="radio"
                 name="question1"
-                value="good"
+                value="1"
                 onChange={handleInputChange}
               />
-              Good
+              &nbsp; 2
               <input
                 type="radio"
                 name="question1"
-                value="bad"
+                value="2"
                 onChange={handleInputChange}
               />
-              Bad
+              &nbsp; 3
               <input
                 type="radio"
                 name="question1"
-                value="very bad"
+                value="3"
                 onChange={handleInputChange}
               />
-              Very Bad
+              &nbsp; 4
               <input
                 type="radio"
                 name="question1"
-                value="excellent"
+                value="4"
                 onChange={handleInputChange}
               />
-              Excellent
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question1"
+                value="5"
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
               {/* </label> */}
             </div>
+            <br />
             <div>
-              <br />
-              <label>
-                Question 2: Do you think faculty and support staff at the
-                college were helpful?
+              <label className="qlabel">
+                Question 2: Teacher subject knowledge
               </label>
               <br />
+              Very Poor &emsp; 1
               <input
                 type="radio"
                 name="question2"
-                value="good"
+                value="1"
                 onChange={handleInputChange}
               />
-              Good
+              &nbsp; 2
               <input
                 type="radio"
                 name="question2"
-                value="bad"
+                value="2"
                 onChange={handleInputChange}
               />
-              Bad
+              &nbsp; 3
               <input
                 type="radio"
                 name="question2"
-                value="very bad"
+                value="3"
                 onChange={handleInputChange}
               />
-              Very Bad
+              &nbsp; 4
               <input
                 type="radio"
                 name="question2"
-                value="excellent"
+                value="4"
                 onChange={handleInputChange}
               />
-              Excellent
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question2"
+                value="5"
+                login_sing
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
+              {/* </label> */}
             </div>
+            <br />
             <div>
-              <br />
-              <label>
-                Question 3: How easy was it to approach the instructor with
-                questions or concerns?
+              <label className="qlabel">
+                Question 3: Compliments theroy with practical examples
               </label>
               <br />
+              Very Poor &emsp; 1
               <input
                 type="radio"
                 name="question3"
-                value="good"
+                value="1"
                 onChange={handleInputChange}
               />
-              Good
+              &nbsp; 2
               <input
                 type="radio"
                 name="question3"
-                value="bad"
+                value="2"
                 onChange={handleInputChange}
               />
-              Bad
+              &nbsp; 3
               <input
                 type="radio"
                 name="question3"
-                value="very bad"
+                value="3"
                 onChange={handleInputChange}
               />
-              Very Bad
+              &nbsp; 4
               <input
                 type="radio"
                 name="question3"
-                value="excellent"
+                value="4"
                 onChange={handleInputChange}
               />
-              Excellent
-            </div>{" "}
-            <div>
-              <br />
-              <label>
-                Question 4: How clearly did your instructor explain the course
-                material?
-              </label>
-              <br />
+              &nbsp; 5
               <input
                 type="radio"
-                name="question4"
-                value="good"
+                name="question3"
+                value="5"
                 onChange={handleInputChange}
               />
-              Good
-              <input
-                type="radio"
-                name="question4"
-                value="bad"
-                onChange={handleInputChange}
-              />
-              Bad
-              <input
-                type="radio"
-                name="question4"
-                value="very bad"
-                onChange={handleInputChange}
-              />
-              Very Bad
-              <input
-                type="radio"
-                name="question4"
-                value="excellent"
-                onChange={handleInputChange}
-              />
-              Excellent
-            </div>{" "}
-            <div>
-              <br />
-              <label>
-                Question 5: How would you rate the instructor's mastery of the
-                material?
-              </label>
-              <br />
-              <input
-                type="radio"
-                name="question5"
-                value="good"
-                onChange={handleInputChange}
-              />
-              Good
-              <input
-                type="radio"
-                name="question5"
-                value="bad"
-                onChange={handleInputChange}
-              />
-              Bad
-              <input
-                type="radio"
-                name="question5"
-                value="very bad"
-                onChange={handleInputChange}
-              />
-              Very Bad
-              <input
-                type="radio"
-                name="question5"
-                value="excellent"
-                onChange={handleInputChange}
-              />
-              Excellent
-            </div>{" "}
-            <div>
-              <br />
-              <label>
-                Question 6: How satisfied are you with the facilities provided
-                by the college?
-              </label>
-              <br />
-              <input
-                type="radio"
-                name="question6"
-                value="good"
-                onChange={handleInputChange}
-              />
-              Good
-              <input
-                type="radio"
-                name="question6"
-                value="bad"
-                onChange={handleInputChange}
-              />
-              Bad
-              <input
-                type="radio"
-                name="question6"
-                value="very bad"
-                onChange={handleInputChange}
-              />
-              Very Bad
-              <input
-                type="radio"
-                name="question6"
-                value="excellent"
-                onChange={handleInputChange}
-              />
-              Excellent
-            </div>{" "}
-            <div>
-              <br />
-              <label>
-                Question 7: How supportive were the faculty members?
-              </label>
-              <br />
-              <input
-                type="radio"
-                name="question7"
-                value="good"
-                onChange={handleInputChange}
-              />
-              Good
-              <input
-                type="radio"
-                name="question7"
-                value="bad"
-                onChange={handleInputChange}
-              />
-              Bad
-              <input
-                type="radio"
-                name="question7"
-                value="very bad"
-                onChange={handleInputChange}
-              />
-              Very Bad
-              <input
-                type="radio"
-                name="question7"
-                value="excellent"
-                onChange={handleInputChange}
-              />
-              Excellent
-            </div>{" "}
-            <div>
-              <br />
-              <label>Question 8: Sincerity / Commitment of the teacher?</label>
-              <br />
-              <input
-                type="radio"
-                name="question8"
-                value="good"
-                onChange={handleInputChange}
-              />
-              Good
-              <input
-                type="radio"
-                name="question8"
-                value="bad"
-                onChange={handleInputChange}
-              />
-              Bad
-              <input
-                type="radio"
-                name="question8"
-                value="very bad"
-                onChange={handleInputChange}
-              />
-              Very Bad
-              <input
-                type="radio"
-                name="question8"
-                value="excellent"
-                onChange={handleInputChange}
-              />
-              Excellent
+              &emsp; Excellent
+              {/* </label> */}
             </div>
+            <br />
             <div>
-              <br />
-              <label>
-                Question 9: How well was the teacher able to communicate?
+              <label className="qlabel">
+                Question 4: Motivation provided by teacher
               </label>
               <br />
+              Very Poor &emsp; 1
               <input
                 type="radio"
-                name="question9"
-                value="good"
+                name="question4"
+                value="1"
                 onChange={handleInputChange}
               />
-              Good
+              &nbsp; 2
               <input
                 type="radio"
-                name="question9"
-                value="bad"
+                name="question4"
+                value="2"
                 onChange={handleInputChange}
               />
-              Bad
+              &nbsp; 3
               <input
                 type="radio"
-                name="question9"
-                value="very bad"
+                name="question4"
+                value="3"
                 onChange={handleInputChange}
               />
-              Very Bad
+              &nbsp; 4
               <input
                 type="radio"
-                name="question9"
-                value="excellent"
+                name="question4"
+                value="4"
                 onChange={handleInputChange}
               />
-              Excellent
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question4"
+                value="5"
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
+              {/* </label> */}
             </div>
+            <br />
             <div>
-              <br />
-              <label>
-                Question 10: How far the teacher encourages student
-                participation in class?
+              <label className="qlabel">
+                Question 5: Ablity to control the class
               </label>
               <br />
+              Very Poor &emsp; 1
+              <input
+                type="radio"
+                name="question5"
+                value="1"
+                onChange={handleInputChange}
+              />
+              &nbsp; 2
+              <input
+                type="radio"
+                name="question5"
+                value="2"
+                onChange={handleInputChange}
+              />
+              &nbsp; 3
+              <input
+                type="radio"
+                name="question5"
+                value="3"
+                onChange={handleInputChange}
+              />
+              &nbsp; 4
+              <input
+                type="radio"
+                name="question5"
+                value="4"
+                onChange={handleInputChange}
+              />
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question5"
+                value="5"
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
+              {/* </label> */}
+            </div>
+            <br />
+            <div>
+              <label className="qlabel">
+                Question 6: Completion & coverage of course
+              </label>
+              <br />
+              Very Poor &emsp; 1
+              <input
+                type="radio"
+                name="question6"
+                value="1"
+                onChange={handleInputChange}
+              />
+              &nbsp; 2
+              <input
+                type="radio"
+                name="question6"
+                value="2"
+                onChange={handleInputChange}
+              />
+              &nbsp; 3
+              <input
+                type="radio"
+                name="question6"
+                value="3"
+                onChange={handleInputChange}
+              />
+              &nbsp; 4
+              <input
+                type="radio"
+                name="question6"
+                value="4"
+                onChange={handleInputChange}
+              />
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question6"
+                value="5"
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
+              {/* </label> */}
+            </div>
+            <br />
+            <div>
+              <label className="qlabel">
+                Question 7: Teacher's Communication skill
+              </label>
+              <br />
+              Very Poor &emsp; 1
+              <input
+                type="radio"
+                name="question7"
+                value="1"
+                onChange={handleInputChange}
+              />
+              &nbsp; 2
+              <input
+                type="radio"
+                name="question7"
+                value="2"
+                onChange={handleInputChange}
+              />
+              &nbsp; 3
+              <input
+                type="radio"
+                name="question7"
+                value="3"
+                onChange={handleInputChange}
+              />
+              &nbsp; 4
+              <input
+                type="radio"
+                name="question7"
+                value="4"
+                onChange={handleInputChange}
+              />
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question7"
+                value="5"
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
+              {/* </label> */}
+            </div>
+            <br />
+            <div>
+              <label className="qlabel">
+                Question 8: Teacher's regularity & punctuality
+              </label>
+              <br />
+              Very Poor &emsp; 1
+              <input
+                type="radio"
+                name="question8"
+                value="1"
+                onChange={handleInputChange}
+              />
+              &nbsp; 2
+              <input
+                type="radio"
+                name="question8"
+                value="2"
+                onChange={handleInputChange}
+              />
+              &nbsp; 3
+              <input
+                type="radio"
+                name="question8"
+                value="3"
+                onChange={handleInputChange}
+              />
+              &nbsp; 4
+              <input
+                type="radio"
+                name="question8"
+                value="4"
+                onChange={handleInputChange}
+              />
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question8"
+                value="5"
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
+              {/* </label> */}
+            </div>
+            <br />
+            <div>
+              <label className="qlabel">
+                Question 9: Interaction & guidance outside the classroom
+              </label>
+              <br />
+              Very Poor &emsp; 1
+              <input
+                type="radio"
+                name="question9"
+                value="1"
+                onChange={handleInputChange}
+              />
+              &nbsp; 2
+              <input
+                type="radio"
+                name="question9"
+                value="2"
+                onChange={handleInputChange}
+              />
+              &nbsp; 3
+              <input
+                type="radio"
+                name="question9"
+                value="3"
+                onChange={handleInputChange}
+              />
+              &nbsp; 4
+              <input
+                type="radio"
+                name="question9"
+                value="4"
+                onChange={handleInputChange}
+              />
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question9"
+                value="5"
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
+              {/* </label> */}
+            </div>{" "}
+            <br />
+            <div>
+              <label className="qlabel">
+                Question 10: Relevance of syllabus as per industry requirement
+              </label>
+              <br />
+              Very Poor &emsp; 1
               <input
                 type="radio"
                 name="question10"
-                value="good"
+                value="1"
                 onChange={handleInputChange}
               />
-              Good
+              &nbsp; 2
               <input
                 type="radio"
                 name="question10"
-                value="bad"
+                value="2"
                 onChange={handleInputChange}
               />
-              Bad
+              &nbsp; 3
               <input
                 type="radio"
                 name="question10"
-                value="very bad"
+                value="3"
                 onChange={handleInputChange}
               />
-              Very Bad
+              &nbsp; 4
               <input
                 type="radio"
                 name="question10"
-                value="excellent"
+                value="4"
                 onChange={handleInputChange}
               />
-              Excellent
+              &nbsp; 5
+              <input
+                type="radio"
+                name="question10"
+                value="5"
+                onChange={handleInputChange}
+              />
+              &emsp; Excellent
+              {/* </label> */}
             </div>
           </div>
 
           <div
-            style={{ display: "flex", justifyContent: "center", margin: "5px" }}
+            style={{ display: "flex", justifyContent: "center"}}
           >
-            <button type="submit" style={{ padding: "10px" }}>
+            <button type="submit" className="login_sing">
               Submit
             </button>
           </div>

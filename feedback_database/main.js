@@ -23,12 +23,11 @@ app.use(express.json());
 
 // API endpoint to receive login data
 app.get('/getdata', async (req, res) => {
-  console.log('***');
-
+  let v;
   try {
     // const { email, password } = req.body;
     pool.query(
-      "SELECT DISTINCT t_name,t_subject FROM feedback_schema.teacher_table join feedback_schema.registration_table on feedback_schema.registration_table.course = feedback_schema.teacher_table.course",
+      "SELECT DISTINCT t_name,t_subject FROM feedback_schema.teacher_table join feedback_schema.registration_table on feedback_schema.registration_table.s_course = feedback_schema.teacher_table.t_course",
       (err, respon) => {
         v = respon.rows;
         console.log(v);
@@ -98,46 +97,38 @@ app.post("/registration", async (req, res) => {
 // Login data check
 
 
-app.post("/login", async (req, res) => {
-  let rrr = req.body;
+app.post  ("/login",  (req, res) => {
+  console.log('***',req.body);
 
   try {
     const { email, password } = req.body;
     console.log(email, password);
-    pool.query(
-      "SELECT email,password FROM feedback_schema.registration_table WHERE  email = '$1' AND password = '$2' ",
-      [email, password],
-      (err, respon) => {
-        if (!err) {
-          res.status(200).send({
-            status: 200,
-            success: true,
-          });
-          console.log(`${res}`);
-          console.log(`${res.rowCount}`);
-        } else {
-          res.status(500).send({
-            status: 500,
-            success: false,
-          });
-          console.log("Error:- ", err.message);
-        }
-      }
-    );
-    res.status(200).send({
-      status: 200,
-      success: true,
-    });
-  } catch {
+     pool.query(
+       `SELECT * FROM feedback_schema.registration_table WHERE email = $1 AND password = $2`,
+       [email, password],
+       (err, result) => {
+         if (result.rowCount > 0) {
+           res.status(200).send({
+             status: 200,
+             success: true,
+           });
+         } else {
+           res.status(500).send({
+             status: 500,
+             success: "false",
+             msg:`Unable to find user with email - ${email}`
+           });
+         }
+       }
+     );
+  } catch (e) {
     res.status(400).send({
       status: 400,
       success: false,
+      error:e
     });
   }
+
 });
 
-// 
-
-// Start the server
-app.listen(3001, () => {
-});
+app.listen(3001, () => {});

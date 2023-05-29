@@ -90,7 +90,7 @@ body {
 }
 #feedbackform{
   width: 40%;
-  height: 800px;
+  height: 810px;
   margin: 30px auto;
   background-color: white;
   box-shadow: 0px 0px 12px 5px #4685f7;
@@ -108,8 +108,16 @@ body {
   border-radius: 5px;
   margin: 30px;
   font-weight: bold;
+  box-shadow: 0px 0px 5px 1px #7992c2;
+  cursor: pointer;
 }
 
+.login_sing:hover{
+  background-color: #7da5f0;
+}
+/* .qlabel{
+
+} */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

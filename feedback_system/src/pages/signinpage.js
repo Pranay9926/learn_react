@@ -10,12 +10,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export const Signin = () => {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     formdata: {},
-  //   };
-  // }
   const [formdata,setFormdata]=useState({})
 const nav=useNavigate()
  const handleSubmit = (event) => {
@@ -38,13 +32,6 @@ setFormdata({
      
     });
   };
-
-  //   change3 = () => {
-  //     console.log("inside")
-  //     this.switch2 === true ? this.switch2 = false : this.switch2 = true
-  //     console.log(this.switch2)
-  //   }
-
   
     return (
       <>
@@ -199,8 +186,3 @@ setFormdata({
   
 }
 
-{
-  /* 
-  
-</div>; */
-}
