@@ -95,6 +95,7 @@ body {
   background-color: white;
   box-shadow: 0px 0px 12px 5px #4685f7;
   border: 10px solid rgb(171, 208, 243);
+  
 }
 #Question{
   margin-left: 10px;
@@ -115,9 +116,11 @@ body {
 .login_sing:hover{
   background-color: #7da5f0;
 }
-/* .qlabel{
-
-} */
+.qlabel{
+    font-weight: bold;
+    font-style: italic;
+    margin: 10px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

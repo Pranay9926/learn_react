@@ -23,10 +23,14 @@ export const Login = () => {
     try {
       let res = await axios.post("http://localhost:3001/login", { email, password });
       if(res){
-        localStorage.setItem("email", email);
+        let uservalue = JSON.stringify(res.data.userdata[0]);
+        localStorage.setItem('uservalue',uservalue);
+        localStorage.setItem('index',0)
+        console.log(res.data.userdata[0])
+        navigate("/FeedbackForm");
       }
     } catch (e) {
-      alert(e.response.data.msg)    
+      alert(e.response.data.msg);   
     }
   };
 

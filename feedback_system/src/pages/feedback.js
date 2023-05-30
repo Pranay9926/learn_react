@@ -10,43 +10,57 @@ import Select from "@mui/material/Select";
 
 const FeedbackForm = () => {
   const [feedback, setFeedback] = useState({});
-  const [arry,setarry] = useState([]) 
-  const [name,setname] = useState([])
+  const [Subject, setSubject] = useState([]);
+  const [Faculty, setFaculty] = useState([]);
   const navigate = useNavigate();
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: "Bearer <your-token>",
-  };
+  
 
-  useEffect(()=>{
+  let database_Value = localStorage.getItem('uservalue');
+  let get_value = JSON.parse(database_Value).enrollment;
+  let local_value = localStorage.getItem('index') ? Number(localStorage.getItem('index')):''
+
+  useEffect(() => {
     getdata();
-  },[])
+  }, [local_value]);
   const getdata =  ()=>{
     axios.get("http://localhost:3001/getdata")
     .then((res)=>{
       let d = res.data.data;
-      d.map((e)=>{
-        arry.push(e.t_name)
-        
-      })
-      console.log(arry)
+      setFaculty(d[local_value].t_name);
+      setSubject(d[local_value].t_subject);
+      console.log(local_value);
     })
   }
-
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    // console.log("here is your value", user, arry);
     setFeedback((prevFeedback) => ({
       ...prevFeedback,
       [name]: value,
+      Subject,
+      Faculty,
+      get_value,
     }));
-  };
+  };  
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
+    
     event.preventDefault();
     console.log(feedback);
-    alert("Your Feedback stored successfully ")
-    setFeedback("")
-    navigate("/");
+    try {
+      let res = await axios.post("http://localhost:3001/feedback", {feedback});
+      if(res){
+        console.log(res)
+        localStorage.setItem("index", local_value + 1);
+      }
+    } catch (e) {
+        console.log("he",e)  
+    }
+    
+    setFeedback('');
+
+    // navigate("/");
 
   };
 
@@ -58,12 +72,23 @@ const FeedbackForm = () => {
             Feedback Form
           </h1>
           <div>
-            <span style={{ margin: "8px " }}> Roll No. : </span>
+            <span style={{ margin: "8px " }}> Enrollment No. : </span>
+            <input
+              type="text"
+              placeholder="Enrollment"
+              name="Enrollment"
+              value={get_value}
+            />
           </div>
           <br />
           <div>
             <span style={{ margin: "10px " }}> Faculty Name : </span>
-            <input type="text" placeholder="Teacher name" value={arry}/>
+            <input
+              type="text"
+              placeholder="Teacher name"
+              name="Faculty"
+              value={Faculty}
+            />
           </div>
           <br />
           <div>
@@ -72,6 +97,8 @@ const FeedbackForm = () => {
               style={{ margin: "0px 10px 2px 42px " }}
               type="text"
               placeholder="Enter Subject"
+              name="Subject"
+              value={Subject}
             />
           </div>
           <br />
@@ -122,7 +149,7 @@ const FeedbackForm = () => {
             <br />
             <div>
               <label className="qlabel">
-                Question 2: Teacher subject knowledge
+                Question 2:&emsp; Teacher subject knowledge
               </label>
               <br />
               Very Poor &emsp; 1
@@ -518,9 +545,7 @@ const FeedbackForm = () => {
             </div>
           </div>
 
-          <div
-            style={{ display: "flex", justifyContent: "center"}}
-          >
+          <div style={{ display: "flex", justifyContent: "center" }}>
             <button type="submit" className="login_sing">
               Submit
             </button>

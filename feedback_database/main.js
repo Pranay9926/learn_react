@@ -63,18 +63,72 @@ app.get('/getdata', async (req, res) => {
 app.post("/registration", async (req, res) => {
   let rrr = req.body;
   console.log(rrr);
-  // res.status(200).send("hello all");
-
-  // res.status(200).send("hello   ")
-
   try {
     const { Name, Enrollment, Email, Password, Course, Semester } = req.body;
     console.log(Name, Enrollment, Email, Password, Course, Semester);
+      pool.query(
+        "INSERT INTO feedback_schema.registration_table(student_name, enrollment, email, password, s_course, s_sem) VALUES ($1, $2, $3, $4, $5, $6)",
+        [Name, Enrollment, Email, Password, Course, Semester],
+        (err, respon) => {
+          if (!err) console.log("your data is stored");
+          else console.log("pranay ", err.message);
+          // pool.end();
+        }
+      );
+        res.status(200).send({
+        status: 200,
+        success: true,
+      });
+  } 
+  catch {
+    res.status(400).send({
+      status: 400,
+      success: false,
+    });
+  }
+});
+
+// Feedback API to store data in database
+
+app.post("/feedback", async (req, res) => {
+  let r = req.body.feedback;
+  console.log("data form feedback =>",r);
+  try {
+    const { get_value, Faculty, Subject, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10 } = req.body.feedback;
+    console.log(
+      get_value,
+      Faculty,
+      Subject,
+      question1,
+      question2,
+      question3,
+      question4,
+      question5,
+      question6,
+      question7,
+      question8,
+      question9,
+      question10
+    );
     pool.query(
-      "INSERT INTO feedback_schema.registration_table(student_name, enrollment, email, password, course, sem) VALUES ($1, $2, $3, $4, $5, $6)",
-      [Name, Enrollment, Email, Password, Course, Semester],
+      "INSERT INTO feedback_schema.feedback_table(enrollment, t_name, t_subject, question_1, question_2, question_3, question_4, question_5, question_6, question_7, question_8, question_9, question_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
+      [
+        get_value,
+        Faculty,
+        Subject,
+        question1,
+        question2,
+        question3,
+        question4,
+        question5,
+        question6,
+        question7,
+        question8,
+        question9,
+        question10,
+      ],
       (err, respon) => {
-        if (!err) console.log("your data is stored");
+        if (!err) console.log("your data is stored in feedback table");
         else console.log("pranay ", err.message);
         // pool.end();
       }
@@ -82,8 +136,6 @@ app.post("/registration", async (req, res) => {
     res.status(200).send({
       status: 200,
       success: true,
-
-      // msg:"Updated successfully !!
     });
   } catch {
     res.status(400).send({
@@ -92,6 +144,8 @@ app.post("/registration", async (req, res) => {
     });
   }
 });
+
+
 
 
 // Login data check
@@ -107,10 +161,12 @@ app.post  ("/login",  (req, res) => {
        `SELECT * FROM feedback_schema.registration_table WHERE email = $1 AND password = $2`,
        [email, password],
        (err, result) => {
-         if (result.rowCount > 0) {
+        
+         if (result.rowCount > 0) { console.log("this is result", result.rows);
            res.status(200).send({
              status: 200,
              success: true,
+             userdata: result.rows
            });
          } else {
            res.status(500).send({
