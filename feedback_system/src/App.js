@@ -15,7 +15,7 @@ function App() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Welcome to Student Feedback System
+            Welcome to Feedback Generator
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Link to="/">

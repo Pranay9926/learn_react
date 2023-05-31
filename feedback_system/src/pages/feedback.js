@@ -1,46 +1,65 @@
 
-import React, { useEffect, useState } from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
 
 
 const FeedbackForm = () => {
   const [feedback, setFeedback] = useState({});
   const [Subject, setSubject] = useState([]);
   const [Faculty, setFaculty] = useState([]);
+  const [data_length , setlength] = useState(0)
   const navigate = useNavigate();
   
-
-  let database_Value = localStorage.getItem('uservalue');
-  let get_value = JSON.parse(database_Value).enrollment;
-  let local_value = localStorage.getItem('index') ? Number(localStorage.getItem('index')):''
+  
+  const getIndexforFeedbackForm = () => {
+    return localStorage.getItem("index")
+      ? Number(localStorage.getItem("index"))
+      : 0;
+  };
 
   useEffect(() => {
-    getdata();
-  }, [local_value]);
-  const getdata =  ()=>{
-    axios.get("http://localhost:3001/getdata")
-    .then((res)=>{
-      let d = res.data.data;
-      setFaculty(d[local_value].t_name);
-      setSubject(d[local_value].t_subject);
-      console.log(local_value);
-    })
+    let database_Value = JSON.parse(localStorage.getItem("uservalue")) || null;
+    let param = database_Value.s_course;
+    let param1 = database_Value.s_sem;
+    getdata(param, param1);
+  }, [getIndexforFeedbackForm()]);
+
+  const getUserValue = () => {
+     let database_Value = JSON.parse(localStorage.getItem("uservalue")) || null;
+      return database_Value;
   }
+
+
+  const User_enrollment = getUserValue().enrollment;
+
+
+  
+
+
+  const getdata = async (param, param1) => {
+    let result = await axios.get(
+      `http://localhost:3001/getdata/${param}/${param1}`
+    );
+    if (result) {
+      let indexes = getIndexforFeedbackForm();
+      let d = result.data.data;
+      setlength(d.length);
+      setFaculty(d[indexes].t_name);
+      setSubject(d[indexes].t_subject);
+      console.log(d[indexes].t_course);
+      console.log(getUserValue().s_course);
+    }
+  };
   
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    // console.log("here is your value", user, arry);
     setFeedback((prevFeedback) => ({
       ...prevFeedback,
       [name]: value,
       Subject,
       Faculty,
-      get_value,
+      User_enrollment,
     }));
   };  
 
@@ -50,17 +69,29 @@ const FeedbackForm = () => {
     console.log(feedback);
     try {
       let res = await axios.post("http://localhost:3001/feedback", {feedback});
-      if(res){
-        console.log(res)
-        localStorage.setItem("index", local_value + 1);
-      }
+      if (res) {
+        if(getIndexforFeedbackForm()<data_length-1){
+          localStorage.setItem("index", getIndexforFeedbackForm() + 1);
+          setFeedback({
+            Subject,
+            Faculty,
+            User_enrollment
+          });
+        }
+        else{
+          alert("your Feedback Submitted Successfully !!!!");
+          navigate("/");
+        }
+      } 
     } catch (e) {
-        console.log("he",e)  
+        alert("falied"); 
     }
-    
-    setFeedback('');
+     const radioInputs = document.querySelectorAll('input[type="radio"]');
+     radioInputs.forEach((input) => {
+       input.checked = false;
+     });
 
-    // navigate("/");
+    
 
   };
 
@@ -74,10 +105,11 @@ const FeedbackForm = () => {
           <div>
             <span style={{ margin: "8px " }}> Enrollment No. : </span>
             <input
+              checked="true"
               type="text"
               placeholder="Enrollment"
               name="Enrollment"
-              value={get_value}
+              value={User_enrollment}
             />
           </div>
           <br />

@@ -20,7 +20,7 @@ const nav=useNavigate()
      console.log(res)
     };
     console.log(formdata);
-     nav("/FeedbackForm");
+     nav("/");
     
   }
 

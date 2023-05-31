@@ -22,12 +22,15 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 // API endpoint to receive login data
-app.get('/getdata', async (req, res) => {
+app.get("/getdata/:course/:sem", async (req, res) => {
+  let course = req.params.course
+  let sem = req.params.sem;
+  console.log("inside api", sem);
   let v;
   try {
     // const { email, password } = req.body;
     pool.query(
-      "SELECT DISTINCT t_name,t_subject FROM feedback_schema.teacher_table join feedback_schema.registration_table on feedback_schema.registration_table.s_course = feedback_schema.teacher_table.t_course",
+      "SELECT DISTINCT t_name,t_subject,t_course FROM feedback_schema.teacher_table join feedback_schema.registration_table on feedback_schema.registration_table.s_course = feedback_schema.teacher_table.t_course WHERE t_course = $1 AND t_sem = $2 ",[course,sem],
       (err, respon) => {
         v = respon.rows;
         console.log(v);
@@ -47,12 +50,10 @@ app.get('/getdata', async (req, res) => {
         }
       }
     );
-  }
-  catch {
+  } catch {
     res.status(400).send({
       status: 400,
       success: false,
-      
     });
   }
 });
@@ -94,9 +95,23 @@ app.post("/feedback", async (req, res) => {
   let r = req.body.feedback;
   console.log("data form feedback =>",r);
   try {
-    const { get_value, Faculty, Subject, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10 } = req.body.feedback;
+    const {
+      User_enrollment,
+      Faculty,
+      Subject,
+      question1,
+      question2,
+      question3,
+      question4,
+      question5,
+      question6,
+      question7,
+      question8,
+      question9,
+      question10,
+    } = req.body.feedback;
     console.log(
-      get_value,
+      User_enrollment,
       Faculty,
       Subject,
       question1,
@@ -113,7 +128,7 @@ app.post("/feedback", async (req, res) => {
     pool.query(
       "INSERT INTO feedback_schema.feedback_table(enrollment, t_name, t_subject, question_1, question_2, question_3, question_4, question_5, question_6, question_7, question_8, question_9, question_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
       [
-        get_value,
+        User_enrollment,
         Faculty,
         Subject,
         question1,
