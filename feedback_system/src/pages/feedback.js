@@ -20,8 +20,8 @@ const FeedbackForm = () => {
 
   useEffect(() => {
     let database_Value = JSON.parse(localStorage.getItem("uservalue")) || null;
-    let param = database_Value.s_course;
-    let param1 = database_Value.s_sem;
+    let param = database_Value?.s_course;
+    let param1 = database_Value?.s_sem;
     getdata(param, param1);
   }, [getIndexforFeedbackForm()]);
 
@@ -31,7 +31,7 @@ const FeedbackForm = () => {
   }
 
 
-  const User_enrollment = getUserValue().enrollment;
+  const User_enrollment = getUserValue()?.enrollment;
 
 
   
@@ -41,16 +41,18 @@ const FeedbackForm = () => {
     let result = await axios.get(
       `http://localhost:3001/getdata/${param}/${param1}`
     );
-    if (result) {
-      let indexes = getIndexforFeedbackForm();
-      let d = result.data.data;
-      setlength(d.length);
-      setFaculty(d[indexes].t_name);
-      setSubject(d[indexes].t_subject);
-      console.log(d[indexes].t_course);
-      console.log(getUserValue().s_course);
+    
+      if (result) {
+        console.log("this is response", result);
+        let indexes = getIndexforFeedbackForm();
+        let d = result.data.data;
+          setlength(d.length);
+          setFaculty(d[indexes]?.t_name);
+          setSubject(d[indexes]?.t_subject);
+          console.log(d[indexes]?.t_course);
+          console.log(getUserValue()?.s_course);
     }
-  };
+  }
   
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -64,7 +66,6 @@ const FeedbackForm = () => {
   };  
 
   const handleSubmit = async(event) => {
-    
     event.preventDefault();
     console.log(feedback);
     try {
@@ -80,6 +81,7 @@ const FeedbackForm = () => {
         }
         else{
           alert("your Feedback Submitted Successfully !!!!");
+          localStorage.clear();
           navigate("/");
         }
       } 
@@ -90,9 +92,6 @@ const FeedbackForm = () => {
      radioInputs.forEach((input) => {
        input.checked = false;
      });
-
-    
-
   };
 
   return (

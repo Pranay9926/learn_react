@@ -29,7 +29,7 @@ export const Login = () => {
         console.log(res.data.userdata[0])
         navigate("/FeedbackForm");
       }
-    } catch (e) {
+    } catch (e) { 
       alert(e.response.data.msg);   
     }
   };
@@ -44,6 +44,7 @@ export const Login = () => {
           placeholder="Email"
           value={email}
           style={{ width: "200px", height: "30px" }}
+          required
           onChange={handleEmailChange}
         />
         <h3 id="loginh3">Enter your Password</h3>
@@ -53,6 +54,7 @@ export const Login = () => {
           placeholder="Password"
           value={password}
           style={{ width: "200px", height: "30px" }}
+          required
           onChange={handlePasswordChange}
         />
         <br />

@@ -1,6 +1,6 @@
 import { Component, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import TextField from "@mui/material/TextField";
+import TextField from '@mui/material/TextField';
 import React from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -8,10 +8,15 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Feedback from "react-bootstrap/esm/Feedback";
+import { setRef } from "@mui/material";
 
 export const Signin = () => {
   const [formdata,setFormdata]=useState({})
+  const [count,setconut]=useState(0)
 const nav=useNavigate()
+
+
  const handleSubmit = (event) => {
     event.preventDefault();
     const res =axios.post("http://localhost:3001/registration", formdata);
@@ -40,16 +45,17 @@ setFormdata({
         <div style={{ textAlign: "center" }}></div>
         <div id="formDiv">
           <h1 style={{ textAlign: "center" }}>Registration</h1>
-          <Row className="row g-0">
-            <Col lg={9} className="border">
-              <Container className="ms-5">
-                <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
+            <Row className="row g-0">
+              <Col lg={9} className="border">
+                <Container className="ms-5">
                   <Row className="row g-0 mt-3">
                     <Col lg={3} className="mt-3">
                       <h4>Name:</h4>
                     </Col>
                     <Col lg={4}>
                       <TextField
+                        required
                         label="Enter Fullname"
                         name="Name"
                         fullWidth
@@ -77,6 +83,7 @@ setFormdata({
                         fullWidth
                         className="mb-3"
                         variant="standard"
+                        required
                         onChange={handleChange}
                       />
                     </Col>
@@ -96,6 +103,7 @@ setFormdata({
                         fullWidth
                         className="mb-3"
                         variant="standard"
+                        required
                         onChange={handleChange}
                       />
                     </Col>
@@ -115,71 +123,72 @@ setFormdata({
                         fullWidth
                         className="mb-3"
                         variant="standard"
+                        required
                         onChange={handleChange}
                       />
                     </Col>
                     <Col lg={5}></Col>
                   </Row>
-                </Form>
-              </Container>
-            </Col>
-          </Row>
 
-          <Row className="row g-0">
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                marginTop: "20px",
-              }}
-            >
-              <div className="mt-3">
-                <h4>Course : </h4>
-              </div>
+                  <Row className="row g-0">
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        marginTop: "20px",
+                      }}
+                    >
+                      <div className="mt-3">
+                        <h4>Course : </h4>
+                      </div>
 
-              <div>
-                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel>Name</InputLabel>
-                  <Select name="Course" onChange={handleChange}>
-                    <MenuItem value="MCA">MCA</MenuItem>
-                    <MenuItem value="BCA">BCA</MenuItem>
-                    <MenuItem value="M.Sc.">M.Sc.</MenuItem>
-                    <MenuItem value="MBA">MBA</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
-              <div className="mt-3">
-                <h4>Semester : </h4>
-              </div>
-              <div>
-                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel>Semester</InputLabel>
-                  <Select name="Semester" onChange={handleChange}>
-                    <MenuItem value="1sem">1sem</MenuItem>
-                    <MenuItem value="2sem">2sem</MenuItem>
-                    <MenuItem value="3sem">3sem</MenuItem>
-                    <MenuItem value="4sem">4sem</MenuItem>
-                    <MenuItem value="5sem">5sem</MenuItem>
-                    <MenuItem value="6sem">6sem</MenuItem>
-                  </Select>
-                </FormControl>
-              </div>
-            </div>
-          </Row>
-          <div className="submitform">
-            <Button
-              style={{
-                padding: "10px",
-                backgroundColor: "rgb(171, 208, 243",
-                borderRadius: "5px",
-                fontWeight: "bold",
-              }}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-          </div>
+                      <div>
+                        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                          <InputLabel>Name</InputLabel>
+                          <Select name="Course" onChange={handleChange}>
+                            <MenuItem value="MCA">MCA</MenuItem>
+                            <MenuItem value="BCA">BCA</MenuItem>
+                            <MenuItem value="M.Sc.">M.Sc.</MenuItem>
+                            <MenuItem value="MBA">MBA</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </div>
+                      <div className="mt-3">
+                        <h4>Semester : </h4>
+                      </div>
+                      <div>
+                        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                          <InputLabel>Semester</InputLabel>
+                          <Select name="Semester" onChange={handleChange}>
+                            <MenuItem value="1sem">1sem</MenuItem>
+                            <MenuItem value="2sem">2sem</MenuItem>
+                            <MenuItem value="3sem">3sem</MenuItem>
+                            <MenuItem value="4sem">4sem</MenuItem>
+                            <MenuItem value="5sem">5sem</MenuItem>
+                            <MenuItem value="6sem">6sem</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </div>
+                    </div>
+                  </Row>
+                  <div className="submitform">
+                    <Button
+                      style={{
+                        padding: "10px",
+                        backgroundColor: "rgb(171, 208, 243",
+                        borderRadius: "5px",
+                        fontWeight: "bold",
+                      }}
+                      type="submit"
+                      onClick={handleSubmit}
+                    >
+                      Submit
+                    </Button>
+                  </div>
+                </Container>
+              </Col>
+            </Row>
+          </Form>
         </div>
       </>
     );

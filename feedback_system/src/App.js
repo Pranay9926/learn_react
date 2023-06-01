@@ -5,6 +5,8 @@ import { Signin } from "./pages/signinpage";
 import FeedbackForm from "./pages/feedback";
 import { Routes, Route, Link } from "react-router-dom";
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { Protected } from "./pages/protected";
+import Home from "./pages/homepage";
 function App() {
   return (
     <div className="App">
@@ -18,12 +20,17 @@ function App() {
             Welcome to Feedback Generator
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Link to="/">
-              <Button sx={{ color: "#FFF" }}>Logout</Button>
+            <Link to="/login">
+              <Button sx={{ color: "#FFF" }}>Login</Button>
             </Link>
-            {/* <Link to="/FeedbackForm">
-              <Button sx={{ color: "#FFF" }}>FeedbackForm</Button>
-            </Link> */}
+            <Link to="/Signin">
+              <Button sx={{ color: "#FFF" }}>Sign Up</Button>
+            </Link>
+            <Link to="/">
+              <Button sx={{ color: "#FFF" }} onClick={localStorage.clear()}>
+                Logout
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>
@@ -31,8 +38,12 @@ function App() {
       <br />
       <br />
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/FeedbackForm" element={<FeedbackForm />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/FeedbackForm"
+          element={<Protected Component={FeedbackForm} />}
+        />
         <Route path="/Signin" element={<Signin />} />
       </Routes>
     </div>
