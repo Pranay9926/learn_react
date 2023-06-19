@@ -25,6 +25,7 @@ const nav=useNavigate()
      console.log(res)
     };
     console.log(formdata);
+    alert("your Registretion done successfully !   Now you need to login")
      nav("/");
     
   }

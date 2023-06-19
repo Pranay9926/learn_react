@@ -46,11 +46,16 @@ const FeedbackForm = () => {
         console.log("this is response", result);
         let indexes = getIndexforFeedbackForm();
         let d = result.data.data;
+        if(d.length!=0){
           setlength(d.length);
           setFaculty(d[indexes]?.t_name);
           setSubject(d[indexes]?.t_subject);
           console.log(d[indexes]?.t_course);
           console.log(getUserValue()?.s_course);
+        }
+        else {
+          alert("Teacher is not found for this course")
+        }
     }
   }
   

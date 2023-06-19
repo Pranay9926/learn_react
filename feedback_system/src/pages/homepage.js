@@ -1,31 +1,4 @@
-// // import logo from "./logo.svg";
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
-
-// function Home() {
-//     const navigate = useNavigate();
-//   return (
-//     <div id="home">
-//       <h1 style={{ textAlign: "center" }}>Welcome To</h1>
-//       <h2 style={{ textAlign: "center" }}>
-//         School of Computer Science and IT , DAVV
-//       </h2>
-//       <div style={{ display: "flex", justifyContent: "center" }}>
-//         <img src={require("../SCSIT.png")} />
-//       </div>
-//       <li className="linkhome">
-//         <Link to="/login">Login</Link>
-//       </li>
-//       <li className="linkhome">
-//         <Link to="/login">Sign Up</Link>
-//       </li>
-//     </div>
-//   );
-// }
-
-// export default Home;
 
 import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
@@ -91,7 +64,7 @@ export default function Main(props) {
                 variant="h5"
                 sx={{ fontWeight: "bold", textAlign: "center" }}
               >
-                Welcome To Feedback Generator
+                Welcome To SCSIT Feedback Generator
               </Typography>
             </Box>
             <br />
@@ -107,8 +80,8 @@ export default function Main(props) {
                 variant="h6"
                 sx={{ fontWeight: "bold", textAlign: "justify" }}
               >
-                This is a blog website Created with 3 for front end developers
-                who need a quick back-end for prototyping and mocking.
+                
+                The aim of the project is to develop a Subject Feedback Generator that automates the process of generating personalized feedback for subjects.
               </Typography>
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", m: 2 }}>
